@@ -1,0 +1,433 @@
+@startuml
+class com.example.myapplication1.NewBill {
+~ ActivityNewBillBinding binding
+~ ArrayList<ProductModel> productsArray
+~ CustomerModel customerModel
+~ int chiledId
+~ DbHandler dbHandler
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
++ void addProductPressed(View)
+- void addProView(View)
+- void removeProView(View)
+- void proSpinner(View,ImageView)
+- void hideProView(View,ImageView)
+- void ifPressedAndProductFieldsAreEmpty(EditText)
+- void PriceConditions(EditText)
+- void setConditionsToProduct(View)
+- void readDataFromView()
+- ArrayList<Boolean> checkProduct()
+- Boolean productIsRight()
++ {static} boolean AreAllTrue(ArrayList<Boolean>)
++ void MoveToBill(View)
++ void onClick(View)
+- void hideKeyBoard(View)
+- void showKeyBoard()
++ void sendData(String)
++ void closeFragment()
++ void onBackPressed()
++ void buAddCus(View)
++ void getCusName(String)
+}
+class com.example.myapplication1.Bill {
+~ CustomerModel customerBill
+~ ArrayList<ProductModel> productsArray
+~ DbHandler dbHandler
+~ ActivityBillBinding binding
+~ boolean flag
+# void onCreate(Bundle)
+- void addProView()
+- void getDataToFromAddCustomerActivity()
+- String getCurrentTime()
+- void quantityIsRight(EditText)
+- void numberOfInstallmentsIsRight(EditText)
+- boolean AllQuantityIsRight()
++ void calcTotalThenSaveAllData(View)
+- void resetBill()
++ void onFocusChange(View,boolean)
++ void hideKeyBoard(View)
++ void onClick(View)
++ boolean onOptionsItemSelected(MenuItem)
+}
+class com.example.myapplication1.AddCustomer {
+~ ActivityAddCustomerBinding binding
+~ CustomerModel customer
+~ DbHandler dbHandler
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
+- void setConditionsToCustomer()
+- void readDataFromView()
+- void NameConditions(EditText)
+- void AgeConditions(EditText)
+- void JopConditions(EditText)
+- void GenderConditions(EditText)
+- void IDCardConditions(EditText)
+- void PhoneNumberConditions(EditText)
+- void AddressConditions(EditText)
+- Boolean customerIsRight()
+- void ifPressedAndFieldsAreEmpty(EditText,EditText,EditText,EditText,EditText,EditText,EditText)
++ void onClick(View)
+- void hideKeyBoard(View)
++ void cuSave(View)
+}
+class com.example.myapplication1.SplashScreen {
+# void onCreate(Bundle)
+}
+class com.example.myapplication1.ScannerFragment {
+~ SendDataInterFace sendDataInterFace
+~ DbHandler dbHandler
+~ boolean flag
+~ TextView tv
+- CodeScanner mCodeScanner
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onResume()
++ void onPause()
++ void onAttach(Context)
+}
+interface com.example.myapplication1.ScannerFragment.SendDataInterFace {
+~ void sendData(String)
+}
+class com.example.myapplication1.Models.Bill_Model {
++ String customerName
++ String productName
++ String productPrice
++ String getCustomerName()
++ void setCustomerName(String)
++ String getProductName()
++ void setProductName(String)
++ String getProductPrice()
++ void setProductPrice(String)
+}
+class com.example.myapplication1.Models.QrCodeModel {
+~ String ProductName
+~ String code
++ String getProductName()
++ void setProductName(String)
++ String getCode()
++ void setCode(String)
+}
+class com.example.myapplication1.ManageProducts {
+~ ActivityManageProductSBinding binding
++ {static} DbHandler dbHandler
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
+}
+class com.example.myapplication1.AddProduct {
+~ ActivityAddProductBinding binding
+~ ProductModel product
+~ Bundle bundle
+~ String[] countries
+~ String[] section
+~ String[] store
+~ DatePickerDialog.OnDateSetListener setListener
+~ DbHandler dbHandler
+# void onCreate(Bundle)
+- boolean allIsRight()
+- void textLengthIsNull(EditText)
+- boolean priceIsRight()
+- boolean nameIsRight()
+- boolean weightIsRight()
+- boolean countryIsRight()
+- boolean storeIsRight()
+- boolean sectionIsRight()
+- boolean expiryDateIsRight()
+- boolean productionDateDateIsRight()
+- void getDataFromForm()
++ void saveProduct(View)
+- void hideKeyBoard(View)
++ void onClick(View)
++ void onRequestPermissionsResult(int,String[],int[])
++ int generateRandomNumber()
++ boolean isExist()
++ boolean onOptionsItemSelected(MenuItem)
++ void setDataToOrigenSpinner()
++ void setDataToSectionSpinner()
++ void setDataToStoreSpinner()
++ void handleOnUpdate()
++ void setProductionDate()
++ void setExpiryDate()
+}
+class com.example.myapplication1.Adapter.ProductListAdapter {
+~ Context context
+- ArrayList<ProductModel> productsList
++ ProductViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ProductViewHolder,int)
++ int getItemCount()
++ void setList(ArrayList<ProductModel>)
+}
+class com.example.myapplication1.Adapter.ProductListAdapter.ProductViewHolder {
+~ TextView proName
+~ ImageButton imageButton
++ void onClick(View)
++ void showPopupMenu(View)
++ boolean onMenuItemClick(MenuItem)
+}
+class com.example.myapplication1.ActivityCodeScanner {
+- CodeScanner mCodeScanner
+- CodeScannerView scannerView
+~ int id
+~ boolean flag
+~ DbHandler dbHandler
+~ ActivityCodeScannerBinding binding
+# void onCreate(Bundle)
+- void codeScanner()
+# void onResume()
+# void onPause()
+}
+class com.example.myapplication1.GenerateQrCode {
+~ ArrayList<Bitmap> qrCodes
+~ ActivityGenerateQrCodeBinding binding
+~ DbHandler dbHandler
+# void onCreate(Bundle)
+- Bitmap generateQrCode(String)
++ boolean onOptionsItemSelected(MenuItem)
+}
+class com.example.myapplication1.Models.CustomerModel {
+~ String name
+~ String age
+~ String gender
+~ String jop
+~ String idCard
+~ String PhoneNumber
+~ String address
++ String getName()
++ void setName(String)
++ String getAge()
++ void setAge(String)
++ String getGender()
++ void setGender(String)
++ String getPhoneNumber()
++ void setPhoneNumber(String)
++ String getJop()
++ void setJop(String)
++ String getAddress()
++ void setAddress(String)
++ String getIdCard()
++ void setIdCard(String)
++ void print()
+}
+class com.example.myapplication1.DataBase.DbHandler {
+- {static} int VERSION
+- {static} String DATABASE_NAME
+- {static} String CUSTOMER_TABLE
+- {static} String PRODUCT_TABLE
+- {static} String BILL_TABLE
+- {static} String SOLD_PRODUCT_TABLE
+- {static} String PRODUCT_QUANTITY_TABLE
+- {static} String ID
+- {static} String NAME
+- {static} String ID_CARD
+- {static} String JOP
+- {static} String AGE
+- {static} String ADDRESS
+- {static} String PHONE_NUMBER
+- {static} String GENDER
+- {static} String PURCHASING_PRICE
+- {static} String CUS_ID
+- {static} String COUNTRY_OF_ORIGIN
+- {static} String CODE
+- {static} String PRODUCTION_DATE
+- {static} String EXPIRY_DATE
+- {static} String SECTION
+- {static} String STORE
+- {static} String WEIGHT
+- {static} String DATE
+- {static} String TOTAL
+- {static} String PAY_METHOD
+- {static} String CUS_NAME
+- {static} String PRO_NAME
+- {static} String BILL_ID
+- {static} String PRICE
+- {static} String QUANTITY
+- {static} String CREATE_TABLE_CUSTOMER
+- {static} String CREATE_TABLE_BILL
+- {static} String CREATE_TABLE_SOLD_PRODUCT
+- {static} String CREATE_TABLE_PRODUCT_QUANTITY
+- {static} String CREATE_TABLE_PRODUCTS
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
++ void setValueProductQuantityTable(int)
++ void setProductQuantity(String,int)
++ void updateProduct(ProductModel)
++ int getProductQuantity(String)
++ void addCustomer(CustomerModel)
++ void addProduct(ProductModel)
+- void setValueCustomerTable(SQLiteDatabase,CustomerModel)
+- ContentValues setValueBillTable(SQLiteDatabase,Long)
+- void setValueToSoldProductTable(SQLiteDatabase,Long,ArrayList<ProductModel>)
+- void setValueProductTable(SQLiteDatabase,ProductModel)
+- void dropAllTables()
+- void dropProductTables()
+- int getNameId(String)
++ ArrayList<CustomerModel> getAllCustomers()
++ ArrayList<Bill_Model> getAllBIlls()
++ ArrayList<ProductModel> getAllProducts()
++ void deleteProduct(String)
++ String getProductName(String)
++ List<QrCodeModel> getAllQrCode()
+}
+class com.example.myapplication1.Adapter.BillListAdapter {
+- ArrayList<Bill_Model> billList
++ BillViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(BillViewHolder,int)
++ void setList(ArrayList<Bill_Model>,MainActivity)
++ int getItemCount()
+}
+class com.example.myapplication1.Adapter.BillListAdapter.BillViewHolder {
+~ TextView cusName
+~ TextView proName
+~ TextView proPrice
+}
+class com.example.myapplication1.AddExistProduct {
+~ String qrcode
+~ DbHandler dbHandler
+~ ActivityAddExistProductBinding binding
+# void onCreate(Bundle)
++ void buSavePro(View)
++ boolean onOptionsItemSelected(MenuItem)
+}
+class com.example.myapplication1.MainActivity {
+~ ActivityMainBinding binding
+~ DbHandler dbHandler
+~ Toolbar toolbar
+# void onCreate(Bundle)
++ void onRequestPermissionsResult(int,String[],int[])
++ void onClick(View)
+}
+class com.example.myapplication1.Models.ProductModel {
+~ String name
+~ double price
+~ int code
+~ String countryOfOrigin
+~ String ProductionDate
+~ String ExpiryDate
+~ String StoreName
+~ double Weight
+~ String Section
++ int getCode()
++ void setCode(int)
++ String getCountryOfOrigin()
++ void setCountryOfOrigin(String)
++ String getProductionDate()
++ void setProductionDate(String)
++ String getExpiryDate()
++ void setExpiryDate(String)
++ String getStoreName()
++ void setStoreName(String)
++ double getWeight()
++ void setWeight(double)
++ String getSection()
++ void setSection(String)
++ String getName()
++ void setName(String)
++ double getPrice()
++ void setPrice(double)
++ void print()
+}
+class com.example.myapplication1.ScanExistProduct {
+~ ActivityScanExistProductBinding binding
+# void onCreate(Bundle)
++ void buScan(View)
++ void onRequestPermissionsResult(int,String[],int[])
++ boolean onOptionsItemSelected(MenuItem)
+}
+class com.example.myapplication1.Adapter.CustomerListAdapter {
+- ArrayList<CustomerModel> customerList
+- OnCusListener monCusListener
++ CustomerListAdapter.CustomerViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(CustomerListAdapter.CustomerViewHolder,int)
++ int getItemCount()
++ void setList(ArrayList<CustomerModel>,OnCusListener)
+}
+class com.example.myapplication1.Adapter.CustomerListAdapter.CustomerViewHolder {
+~ TextView customerName
+~ OnCusListener onCusListener
++ void onClick(View)
+}
+interface com.example.myapplication1.Adapter.CustomerListAdapter.OnCusListener {
+~ void onClick(int)
+}
+class com.example.myapplication1.Models.BillModel {
++ {static} String customerName
++ {static} ArrayList<ProductModel> products
++ {static} ArrayList<Double> total
++ {static} ArrayList<Integer> quantity
++ {static} int number_of_installments
++ {static} String payedType
++ {static} double totalPrice
++ {static} String payedTime
++ {static} double given
++ {static} String getCustomerName()
++ {static} void setTotalPrice(double)
++ {static} void setCustomerName(String)
++ {static} ArrayList<ProductModel> getProducts()
++ {static} void setProducts(ArrayList<ProductModel>)
++ {static} ArrayList<Double> getTotal()
++ {static} void setTotal(ArrayList<Double>)
++ {static} ArrayList<Integer> getQuantity()
++ {static} void setQuantity(ArrayList<Integer>)
++ {static} int getNumber_of_installments()
++ {static} void setNumber_of_installments(int)
++ {static} String getPayedType()
++ {static} void setPayedType(String)
++ {static} String getPayedTime()
++ {static} void setPayedTime(String)
++ {static} double getGiven()
++ {static} void setGiven(double)
++ {static} double getTotalPrice()
++ {static} void print()
+}
+class com.example.myapplication1.SelectCustomer {
+~ DbHandler dbHandler
+~ SendCusNameInterFace sendCusNameInterFace
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onAttach(Context)
++ void onClick(int)
+}
+interface com.example.myapplication1.SelectCustomer.SendCusNameInterFace {
++ void getCusName(String)
+}
+
+
+com.example.myapplication1.OnClickListener <|.. com.example.myapplication1.NewBill
+com.example.myapplication1.SendDataInterFace <|.. com.example.myapplication1.NewBill
+com.example.myapplication1.SendCusNameInterFace <|.. com.example.myapplication1.NewBill
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication1.NewBill
+com.example.myapplication1.OnFocusChangeListener <|.. com.example.myapplication1.Bill
+com.example.myapplication1.OnClickListener <|.. com.example.myapplication1.Bill
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication1.Bill
+com.example.myapplication1.OnClickListener <|.. com.example.myapplication1.AddCustomer
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication1.AddCustomer
+android.app.Activity <|-- com.example.myapplication1.SplashScreen
+androidx.fragment.app.Fragment <|-- com.example.myapplication1.ScannerFragment
+com.example.myapplication1.ScannerFragment +.. com.example.myapplication1.ScannerFragment.SendDataInterFace
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication1.ManageProducts
+com.example.myapplication1.OnClickListener <|.. com.example.myapplication1.AddProduct
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication1.AddProduct
+com.example.myapplication1.Adapter.Adapter <|-- com.example.myapplication1.Adapter.ProductListAdapter
+com.example.myapplication1.Adapter.ProductListAdapter +.. com.example.myapplication1.Adapter.ProductListAdapter.ProductViewHolder
+com.example.myapplication1.Adapter.OnClickListener <|.. com.example.myapplication1.Adapter.ProductListAdapter.ProductViewHolder
+com.example.myapplication1.Adapter.OnMenuItemClickListener <|.. com.example.myapplication1.Adapter.ProductListAdapter.ProductViewHolder
+com.example.myapplication1.Adapter.ViewHolder <|-- com.example.myapplication1.Adapter.ProductListAdapter.ProductViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication1.ActivityCodeScanner
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication1.GenerateQrCode
+java.io.Serializable <|.. com.example.myapplication1.Models.CustomerModel
+android.database.sqlite.SQLiteOpenHelper <|-- com.example.myapplication1.DataBase.DbHandler
+com.example.myapplication1.Adapter.Adapter <|-- com.example.myapplication1.Adapter.BillListAdapter
+com.example.myapplication1.Adapter.BillListAdapter +.. com.example.myapplication1.Adapter.BillListAdapter.BillViewHolder
+com.example.myapplication1.Adapter.ViewHolder <|-- com.example.myapplication1.Adapter.BillListAdapter.BillViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication1.AddExistProduct
+com.example.myapplication1.OnClickListener <|.. com.example.myapplication1.MainActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication1.MainActivity
+java.io.Serializable <|.. com.example.myapplication1.Models.ProductModel
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication1.ScanExistProduct
+com.example.myapplication1.Adapter.Adapter <|-- com.example.myapplication1.Adapter.CustomerListAdapter
+com.example.myapplication1.Adapter.CustomerListAdapter +.. com.example.myapplication1.Adapter.CustomerListAdapter.CustomerViewHolder
+com.example.myapplication1.Adapter.OnClickListener <|.. com.example.myapplication1.Adapter.CustomerListAdapter.CustomerViewHolder
+com.example.myapplication1.Adapter.ViewHolder <|-- com.example.myapplication1.Adapter.CustomerListAdapter.CustomerViewHolder
+com.example.myapplication1.Adapter.CustomerListAdapter +.. com.example.myapplication1.Adapter.CustomerListAdapter.OnCusListener
+com.example.myapplication1.OnCusListener <|.. com.example.myapplication1.SelectCustomer
+androidx.fragment.app.Fragment <|-- com.example.myapplication1.SelectCustomer
+com.example.myapplication1.SelectCustomer +.. com.example.myapplication1.SelectCustomer.SendCusNameInterFace
+@enduml

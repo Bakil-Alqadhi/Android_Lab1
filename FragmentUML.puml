@@ -1,0 +1,46 @@
+@startuml
+class com.example.myapplication1.SplashScreen {
+# void onCreate(Bundle)
+}
+class com.example.myapplication1.ScannerFragment {
+~ SendDataInterFace sendDataInterFace
+~ DbHandler dbHandler
+~ boolean flag
+~ TextView tv
+- CodeScanner mCodeScanner
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onResume()
++ void onPause()
++ void onAttach(Context)
+}
+interface com.example.myapplication1.ScannerFragment.SendDataInterFace {
+~ void sendData(String)
+}
+class com.example.myapplication1.ScanExistProduct {
+~ ActivityScanExistProductBinding binding
+# void onCreate(Bundle)
++ void buScan(View)
++ void onRequestPermissionsResult(int,String[],int[])
++ boolean onOptionsItemSelected(MenuItem)
+}
+class com.example.myapplication1.SelectCustomer {
+~ DbHandler dbHandler
+~ SendCusNameInterFace sendCusNameInterFace
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onAttach(Context)
++ void onClick(int)
+}
+interface com.example.myapplication1.SelectCustomer.SendCusNameInterFace {
++ void getCusName(String)
+}
+
+
+android.app.Activity <|-- com.example.myapplication1.SplashScreen
+androidx.fragment.app.Fragment <|-- com.example.myapplication1.ScannerFragment
+com.example.myapplication1.ScannerFragment +.. com.example.myapplication1.ScannerFragment.SendDataInterFace
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication1.ScanExistProduct
+com.example.myapplication1.OnCusListener <|.. com.example.myapplication1.SelectCustomer
+androidx.fragment.app.Fragment <|-- com.example.myapplication1.SelectCustomer
+com.example.myapplication1.SelectCustomer +.. com.example.myapplication1.SelectCustomer.SendCusNameInterFace
+@enduml

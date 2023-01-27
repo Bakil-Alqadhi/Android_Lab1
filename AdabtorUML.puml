@@ -1,0 +1,60 @@
+@startuml
+class com.example.myapplication1.Adapter.BillListAdapter {
+- ArrayList<Bill_Model> billList
++ BillViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(BillViewHolder,int)
++ void setList(ArrayList<Bill_Model>,MainActivity)
++ int getItemCount()
+}
+class com.example.myapplication1.Adapter.BillListAdapter.BillViewHolder {
+~ TextView cusName
+~ TextView proName
+~ TextView proPrice
+}
+class com.example.myapplication1.Adapter.CustomerListAdapter {
+- ArrayList<CustomerModel> customerList
+- OnCusListener monCusListener
++ CustomerListAdapter.CustomerViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(CustomerListAdapter.CustomerViewHolder,int)
++ int getItemCount()
++ void setList(ArrayList<CustomerModel>,OnCusListener)
+}
+class com.example.myapplication1.Adapter.CustomerListAdapter.CustomerViewHolder {
+~ TextView customerName
+~ OnCusListener onCusListener
++ void onClick(View)
+}
+interface com.example.myapplication1.Adapter.CustomerListAdapter.OnCusListener {
+~ void onClick(int)
+}
+class com.example.myapplication1.Adapter.ProductListAdapter {
+~ Context context
+- ArrayList<ProductModel> productsList
++ ProductViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ProductViewHolder,int)
++ int getItemCount()
++ void setList(ArrayList<ProductModel>)
+}
+class com.example.myapplication1.Adapter.ProductListAdapter.ProductViewHolder {
+~ TextView proName
+~ ImageButton imageButton
++ void onClick(View)
++ void showPopupMenu(View)
++ boolean onMenuItemClick(MenuItem)
+}
+
+
+com.example.myapplication1.Adapter.Adapter <|-- com.example.myapplication1.Adapter.BillListAdapter
+com.example.myapplication1.Adapter.BillListAdapter +.. com.example.myapplication1.Adapter.BillListAdapter.BillViewHolder
+com.example.myapplication1.Adapter.ViewHolder <|-- com.example.myapplication1.Adapter.BillListAdapter.BillViewHolder
+com.example.myapplication1.Adapter.Adapter <|-- com.example.myapplication1.Adapter.CustomerListAdapter
+com.example.myapplication1.Adapter.CustomerListAdapter +.. com.example.myapplication1.Adapter.CustomerListAdapter.CustomerViewHolder
+com.example.myapplication1.Adapter.OnClickListener <|.. com.example.myapplication1.Adapter.CustomerListAdapter.CustomerViewHolder
+com.example.myapplication1.Adapter.ViewHolder <|-- com.example.myapplication1.Adapter.CustomerListAdapter.CustomerViewHolder
+com.example.myapplication1.Adapter.CustomerListAdapter +.. com.example.myapplication1.Adapter.CustomerListAdapter.OnCusListener
+com.example.myapplication1.Adapter.Adapter <|-- com.example.myapplication1.Adapter.ProductListAdapter
+com.example.myapplication1.Adapter.ProductListAdapter +.. com.example.myapplication1.Adapter.ProductListAdapter.ProductViewHolder
+com.example.myapplication1.Adapter.OnClickListener <|.. com.example.myapplication1.Adapter.ProductListAdapter.ProductViewHolder
+com.example.myapplication1.Adapter.OnMenuItemClickListener <|.. com.example.myapplication1.Adapter.ProductListAdapter.ProductViewHolder
+com.example.myapplication1.Adapter.ViewHolder <|-- com.example.myapplication1.Adapter.ProductListAdapter.ProductViewHolder
+@enduml

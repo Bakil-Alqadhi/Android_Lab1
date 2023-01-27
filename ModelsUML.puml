@@ -1,0 +1,109 @@
+@startuml
+class com.example.myapplication1.Models.CustomerModel {
+~ String name
+~ String age
+~ String gender
+~ String jop
+~ String idCard
+~ String PhoneNumber
+~ String address
++ String getName()
++ void setName(String)
++ String getAge()
++ void setAge(String)
++ String getGender()
++ void setGender(String)
++ String getPhoneNumber()
++ void setPhoneNumber(String)
++ String getJop()
++ void setJop(String)
++ String getAddress()
++ void setAddress(String)
++ String getIdCard()
++ void setIdCard(String)
++ void print()
+}
+class com.example.myapplication1.Models.QrCodeModel {
+~ String ProductName
+~ String code
++ String getProductName()
++ void setProductName(String)
++ String getCode()
++ void setCode(String)
+}
+class com.example.myapplication1.Models.Bill_Model {
++ String customerName
++ String productName
++ String productPrice
++ String getCustomerName()
++ void setCustomerName(String)
++ String getProductName()
++ void setProductName(String)
++ String getProductPrice()
++ void setProductPrice(String)
+}
+class com.example.myapplication1.Models.ProductModel {
+~ String name
+~ double price
+~ int code
+~ String countryOfOrigin
+~ String ProductionDate
+~ String ExpiryDate
+~ String StoreName
+~ double Weight
+~ String Section
++ int getCode()
++ void setCode(int)
++ String getCountryOfOrigin()
++ void setCountryOfOrigin(String)
++ String getProductionDate()
++ void setProductionDate(String)
++ String getExpiryDate()
++ void setExpiryDate(String)
++ String getStoreName()
++ void setStoreName(String)
++ double getWeight()
++ void setWeight(double)
++ String getSection()
++ void setSection(String)
++ String getName()
++ void setName(String)
++ double getPrice()
++ void setPrice(double)
++ void print()
+}
+class com.example.myapplication1.Models.BillModel {
++ {static} String customerName
++ {static} ArrayList<ProductModel> products
++ {static} ArrayList<Double> total
++ {static} ArrayList<Integer> quantity
++ {static} int number_of_installments
++ {static} String payedType
++ {static} double totalPrice
++ {static} String payedTime
++ {static} double given
++ {static} String getCustomerName()
++ {static} void setTotalPrice(double)
++ {static} void setCustomerName(String)
++ {static} ArrayList<ProductModel> getProducts()
++ {static} void setProducts(ArrayList<ProductModel>)
++ {static} ArrayList<Double> getTotal()
++ {static} void setTotal(ArrayList<Double>)
++ {static} ArrayList<Integer> getQuantity()
++ {static} void setQuantity(ArrayList<Integer>)
++ {static} int getNumber_of_installments()
++ {static} void setNumber_of_installments(int)
++ {static} String getPayedType()
++ {static} void setPayedType(String)
++ {static} String getPayedTime()
++ {static} void setPayedTime(String)
++ {static} double getGiven()
++ {static} void setGiven(double)
++ {static} double getTotalPrice()
++ {static} void print()
+}
+
+
+java.io.Serializable <|.. com.example.myapplication1.Models.CustomerModel
+java.io.Serializable <|.. com.example.myapplication1.Models.ProductModel
+@enduml
